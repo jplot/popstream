@@ -2,16 +2,18 @@
   "name": "kfor",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "NODE_ENV=development node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
   "dependencies": {
+    "atob": "^2.0.3",
     "fortune": "^5.1.0",
-    "fortune-http": "^1.0.7"
+    "fortune-http": "^1.0.7",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "fortune-nedb": "^1.1.5"
   }
 }
