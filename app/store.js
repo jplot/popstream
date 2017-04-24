@@ -11,7 +11,7 @@ const transforms = {}
 
 for (let type of [User, Channel, Provider, Stream]) {
   recordTypes[type.name] = type.definition
-  transforms[type.name] = [ type.input, type.output ]
+  transforms[type.name] = [type.input, type.output]
 }
 
 const store = fortune(recordTypes, {
