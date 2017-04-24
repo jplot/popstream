@@ -2,6 +2,7 @@ const env = require('./env')
 
 const constants = {
   use: {
+    cluster:  (parseInt(process.env.POPSTREAM_CLUSTER) || (env.isProduction ? 1 : 0)) === 1,
     postgres: (parseInt(process.env.POPSTREAM_POSTGRES) || (env.isProduction ? 1 : 0)) === 1
   },
   postgres: {

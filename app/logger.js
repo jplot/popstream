@@ -1,9 +1,9 @@
-const env = require('./env')
+const CONSTANTS = require('./constants')
 
 const logger = {
   info(...message) {
     let name = 'Serve'
-    if (env.isProduction) name = `Worker:${process.pid}`
+    if (CONSTANTS.use.cluster) name = `Worker:${process.pid}`
 
     console.log(`[${name}]`, ...message)
   }
