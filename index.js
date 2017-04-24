@@ -1,10 +1,10 @@
 const cluster = require('cluster')
 const numCPUs = require('os').cpus().length
-const environment = process.env.NODE_ENV || 'development'
+const env = require('./app/env')
 
-if (environment === 'production') {
+if (env.isProduction) {
   if (cluster.isMaster) {
-    console.log(`Master ${process.pid} is running`);
+    console.log(`[Master:${process.pid}]`, `running`);
 
     // Fork workers.
     for (let i = 0; i < numCPUs; i++) {
@@ -12,7 +12,7 @@ if (environment === 'production') {
     }
 
     cluster.on('exit', (worker, code, signal) => {
-      console.log(`worker ${worker.process.pid} died`);
+      console.log(`[Worker:${worker.process.pid}]`, `died`);
     });
   } else {
     require('./app/server')
