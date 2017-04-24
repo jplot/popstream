@@ -2,6 +2,7 @@ const http = require('http')
 const fortuneHTTP = require('fortune-http')
 const store = require('./store')
 const logger = require('./logger')
+const CONSTANTS = require('./constants')
 
 require('./i18n')
 
@@ -11,7 +12,7 @@ const server = http.createServer((request, response) => {
   listener(request, response).catch(error => { console.error(error.stack) })
 })
 
-store.connect().then(() => server.listen(1337))
+store.connect().then(() => server.listen(CONSTANTS.http.port))
 // store.endTransaction.catch(error => { console.error(error) })
 
 logger.info('started')
