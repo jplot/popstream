@@ -9,6 +9,7 @@
   "license": "ISC",
   "dependencies": {
     "atob": "^2.0.3",
+    "config": "^1.25.1",
     "fortune": "^5.1.0",
     "fortune-http": "^1.0.7",
     "fortune-postgres": "^1.4.7",

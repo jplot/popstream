@@ -1,14 +1,14 @@
 const path = require('path')
-const CONSTANTS = require('../constants')
-const POSTGRES = CONSTANTS.postgres
+const CONFIG =  require('config')
+const POSTGRES = CONFIG.postgres
 
 let adapterName = null
 let adapterOptions = {}
 
-if (CONSTANTS.use.postgres) {
+if (CONFIG.get('use.postgres')) {
   adapterName = require('fortune-postgres')
   adapterOptions = {
-    url: `postgres://${POSTGRES.username}:${POSTGRES.password}@${POSTGRES.host}:${POSTGRES.port}/${POSTGRES.database}`,
+    url: `postgres://${POSTGRES.get('username')}:${POSTGRES.get('password')}@${POSTGRES.get('host')}:${POSTGRES.get('port')}/${POSTGRES.get('database')}`,
   }
 } else {
   adapterName = require('fortune-nedb')

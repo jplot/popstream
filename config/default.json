@@ -1,0 +1,20 @@
+{
+  "use": {
+    "cluster":  0,
+    "ws":       1,
+    "postgres": 0
+  },
+  "postgres": {
+    "host":     "127.0.0.1",
+    "port":     5432,
+    "username": "popstream",
+    "password": "mysecretpassword",
+    "database": "popstream"
+  },
+  "ws": {
+    "port":     8890
+  },
+  "http": {
+    "port":     1337
+  }
+}

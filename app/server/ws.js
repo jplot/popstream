@@ -2,14 +2,14 @@ const fortuneWS = require('fortune-ws')
 const store = require('../store')
 const logger = require('../logger')
 const redis = require('./redis')
-const CONSTANTS = require('../constants')
+const CONFIG =  require('config')
 
 const servers = {
   start() {
     let clients = null
 
     const optionsWS = {
-      port: CONSTANTS.ws.port
+      port: CONFIG.get('ws.port')
     }
     const server = fortuneWS(store, (state, changes) => {
       const recordAction = Object.keys(changes)[0]

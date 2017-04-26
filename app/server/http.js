@@ -3,7 +3,7 @@ const fortuneHTTP = require('fortune-http')
 const store = require('../store')
 const logger = require('../logger')
 const zlib = require('zlib')
-const CONSTANTS = require('../constants')
+const CONFIG =  require('config')
 
 const servers = {
   start() {
@@ -45,7 +45,7 @@ const servers = {
       })
     })
 
-    store.connect().then(() => server.listen(CONSTANTS.http.port))
+    store.connect().then(() => server.listen(CONFIG.get('http.port')))
     // store.endTransaction.catch(error => { console.error(error) })
 
     logger.info('[HTTP]', 'started')
