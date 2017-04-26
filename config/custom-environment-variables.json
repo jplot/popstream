@@ -1,0 +1,20 @@
+{
+  "use": {
+    "cluster":  "POPSTREAM_CLUSTER",
+    "ws":       "POPSTREAM_WS",
+    "postgres": "POPSTREAM_POSTGRES"
+  },
+  "postgres": {
+    "host":     "POPSTREAM_POSTGRES_HOST",
+    "port":     "POPSTREAM_POSTGRES_PORT",
+    "username": "POPSTREAM_POSTGRES_USERNAME",
+    "password": "POPSTREAM_POSTGRES_PASSWORD",
+    "database": "POPSTREAM_POSTGRES_DATABASE"
+  },
+  "ws": {
+    "port":     "POPSTREAM_WS_PORT"
+  },
+  "http": {
+    "port":     "POPSTREAM_HTTP_PORT"
+  }
+}

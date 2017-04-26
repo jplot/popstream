@@ -1,8 +1,8 @@
 const cluster = require('cluster')
 const numCPUs = require('os').cpus().length
-const CONSTANTS = require('./app/constants')
+const CONFIG =  require('config')
 
-if (CONSTANTS.use.cluster) {
+if (CONFIG.get('use.cluster')) {
   if (cluster.isMaster) {
     console.log(`[Master:${process.pid}]`, `running`);
 

@@ -1,0 +1,6 @@
+{
+  "use": {
+    "cluster":  1,
+    "postgres": 1
+  }
+}

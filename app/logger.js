@@ -1,9 +1,9 @@
-const CONSTANTS = require('./constants')
+const CONFIG =  require('config')
 
 const logger = {
   info(...message) {
     let name = 'Serve'
-    if (CONSTANTS.use.cluster) name = `Worker:${process.pid}`
+    if (CONFIG.get('use.cluster')) name = `Worker:${process.pid}`
 
     console.log(`[${name}]`, ...message)
   }
