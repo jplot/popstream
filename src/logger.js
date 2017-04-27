@@ -1,6 +1,6 @@
-const CONFIG =  require('config')
+import CONFIG from 'config'
 
-const logger = {
+export default {
   info(...message) {
     let name = 'Serve'
     if (CONFIG.get('use.cluster')) name = `Worker:${process.pid}`
@@ -8,5 +8,3 @@ const logger = {
     console.log(`[${name}]`, ...message)
   }
 }
-
-module.exports = logger

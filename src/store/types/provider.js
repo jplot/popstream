@@ -1,5 +1,5 @@
-const fortune = require('fortune')
-const recordBase = require('./base')
+import fortune from 'fortune'
+import recordBase from './base'
 
 const recordType = {
   name: 'provider',
@@ -12,4 +12,4 @@ const recordType = {
   }
 }
 
-module.exports = Object.assign(recordType, recordBase)
+export default Object.assign(recordType, recordBase)

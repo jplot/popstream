@@ -1,4 +1,4 @@
-const fortune = require('fortune')
+import fortune from 'fortune'
 const { message } = fortune
 
 // Add application error messages in English (default language).

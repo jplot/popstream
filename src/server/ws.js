@@ -1,10 +1,9 @@
-const fortuneWS = require('fortune-ws')
-const store = require('../store')
-const logger = require('../logger')
-const redis = require('./redis')
-const CONFIG =  require('config')
+import CONFIG from 'config'
+import fortuneWS from 'fortune-ws'
+import logger from '../logger'
+import store from '../store'
 
-const servers = {
+export default {
   start() {
     let clients = null
 
@@ -30,5 +29,3 @@ const servers = {
     logger.info('[WS]', 'started')
   }
 }
-
-module.exports = servers

@@ -1,6 +1,9 @@
-const cluster = require('cluster')
-const numCPUs = require('os').cpus().length
-const CONFIG =  require('config')
+import CONFIG from 'config'
+import cluster from 'cluster'
+import os from 'os'
+import server from './server'
+
+const numCPUs = os.cpus().length
 
 if (CONFIG.get('use.cluster')) {
   if (cluster.isMaster) {
@@ -15,8 +18,8 @@ if (CONFIG.get('use.cluster')) {
       console.log(`[Worker:${worker.process.pid}]`, `died`);
     });
   } else {
-    require('./app/server')
+    server.start()
   }
 } else {
-  require('./app/server')
+  server.start()
 }
