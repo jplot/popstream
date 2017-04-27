@@ -1,7 +1,8 @@
-const fortune = require('fortune')
-const recordBase = require('./base')
-const atob = require('atob')
-const crypto = require('crypto')
+import fortune from 'fortune'
+import recordBase from './base'
+import atob from 'atob'
+import crypto from 'crypto'
+
 const hashAlgorithm = 'SHA256'
 
 const { methods, errors: { BadRequestError, UnauthorizedError, ForbiddenError } } = fortune
@@ -54,4 +55,4 @@ function makePassword(string) {
   return { salt, password }
 }
 
-module.exports = recordType
+export default recordType

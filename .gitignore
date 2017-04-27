@@ -37,5 +37,9 @@ jspm_packages
 .node_repl_history
 
 # Ignore database
-app/db/*.db
-!app/db/.keep
+db/*
+!db/.keep
+
+# Ignore bundler compiled
+dist/*
+!dist/.keep

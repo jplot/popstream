@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "NODE_ENV=development node index.js",
+    "start": "npm run build && npm run serve",
+    "build": "rollup src/main.js --format cjs --output dist/bundle.js",
+    "serve": "node dist/bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "license": "ISC",
@@ -12,11 +14,12 @@
     "config": "^1.25.1",
     "fortune": "^5.1.0",
     "fortune-http": "^1.0.7",
+    "fortune-nedb": "^1.1.5",
     "fortune-postgres": "^1.4.7",
     "fortune-ws": "^1.0.3",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
-    "fortune-nedb": "^1.1.5"
+    "rollup": "^0.41.6"
   }
 }
