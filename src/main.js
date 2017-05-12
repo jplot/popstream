@@ -5,7 +5,7 @@ import server from './server'
 
 const numCPUs = os.cpus().length
 
-if (CONFIG.get('use.cluster')) {
+if (parseInt(CONFIG.get('use.cluster')) === 1) {
   if (cluster.isMaster) {
     console.log(`[Master:${process.pid}]`, `running`);
 
