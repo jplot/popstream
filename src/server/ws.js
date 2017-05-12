@@ -26,6 +26,6 @@ export default {
       return state
     }, optionsWS)
 
-    logger.info('[WS]', 'started')
+    logger.info('[WS]', `started on port ${CONFIG.get('ws.port')}`)
   }
 }
