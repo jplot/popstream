@@ -32,7 +32,7 @@ export default {
               logger_records(JSON.parse(decoded.toString()).records.map(record => { return `${recordPath}/${record.id}` }))
             })
           } else if (contentEncoding === 'deflate') {
-            zlib.inflate(chuck.payload, function(err, decoded) {
+            zlib.inflate(chuck.payload, (err, decoded) => {
               logger_records(JSON.parse(decoded.toString()).records.map(record => { return `${recordPath}/${record.id}` }))
             })
           } else {
@@ -50,6 +50,6 @@ export default {
     store.connect().then(() => server.listen(CONFIG.get('http.port')))
     // store.endTransaction.catch(error => { console.error(error) })
 
-    logger.info('[HTTP]', 'started')
+    logger.info('[HTTP]', `started on port ${CONFIG.get('http.port')}`)
   }
 }
