@@ -21,7 +21,7 @@ for (let type of [User, Channel, Provider, Stream]) {
 
 let adapter = null
 
-if (CONFIG.get('use.postgres')) {
+if (parseInt(CONFIG.get('use.postgres')) === 1) {
   adapter = adapterPostgres
 } else {
   adapter = adapterNedb

@@ -8,8 +8,7 @@ import './i18n'
 export default {
   start() {
     http.start()
-    if (CONFIG.get('use.ws')) ws.start()
-
+    if (parseInt(CONFIG.get('use.ws')) === 1) ws.start()
     logger.info('started')
   }
 }
