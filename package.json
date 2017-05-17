@@ -18,7 +18,9 @@
     "fortune-nedb": "^1.1.5",
     "fortune-postgres": "^1.4.7",
     "fortune-ws": "^1.0.3",
+    "msgpack-lite": "^0.1.26",
     "node-lzw": "^0.3.1",
+    "redis": "^2.7.1",
     "underscore": "^1.8.3"
   },
   "devDependencies": {

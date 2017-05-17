@@ -10,6 +10,6 @@ export default {
 
     'brotli', 'config', 'fortune', 'fortune-http', 'fortune-nedb',
     'fortune-postgres', 'fortune-postgres', 'fortune-ws',
-    'node-lzw', 'underscore'
+    'msgpack-lite', 'node-lzw', 'redis', 'underscore'
   ]
 }
