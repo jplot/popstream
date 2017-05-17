@@ -5,8 +5,8 @@ export default {
   external: [
     'cluster', 'crypto', 'http', 'os', 'zlib',
 
-    'config', 'fortune', 'fortune-http', 'fortune-nedb',
+    'brotli', 'config', 'fortune', 'fortune-http', 'fortune-nedb',
     'fortune-postgres', 'fortune-postgres', 'fortune-ws',
-    'underscore'
+    'node-lzw', 'underscore'
   ]
 }

@@ -1,7 +1,9 @@
 import CONFIG from 'config'
 import http from './server/http'
 import ws from './server/ws'
-import logger from './logger'
+import debug from './logger'
+
+const logger = debug()
 
 import './i18n'
 
