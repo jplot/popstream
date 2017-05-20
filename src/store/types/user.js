@@ -1,24 +1,37 @@
 import fortune from 'fortune'
-import recordBase from './base'
+import RecordBase from './base'
 import atob from 'atob'
 import crypto from 'crypto'
 
 const hashAlgorithm = 'SHA256'
 
 const { methods, errors: { BadRequestError, UnauthorizedError, ForbiddenError } } = fortune
-const recordType = {
-  name: 'user',
 
-  definition: {
-    email: String,
-    password: Buffer,
-    salt: Buffer,
-    channels: [Array('channel'), 'user'],
-    updatedAt: Date,
-    createdAt: Date
-  },
+function _makePassword(string) {
+  const salt = crypto.randomBytes(32)
+  const password = crypto.createHash(hashAlgorithm)
+                         .update(salt).update('' + string).digest()
 
-  input(context, record, update) {
+  return { salt, password }
+}
+
+export default class extends RecordBase {
+  static get NAME() {
+    return 'user'
+  }
+
+  static get DEFINITION() {
+    return {
+      email: String,
+      password: Buffer,
+      salt: Buffer,
+      channels: [Array('channel'), 'user'],
+      updatedAt: Date,
+      createdAt: Date
+    }
+  }
+
+  static input(context, record, update) {
     const { request: { method, meta: { language } } } = context
 
     switch (method) {
@@ -28,31 +41,25 @@ const recordType = {
             throw new BadRequestError(message('MissingField', language, { field }))
 
         const { email, password } = record
-        return recordBase.create(Object.assign({ email }, makePassword(password)))
+
+        Object.assign({ email }, _makePassword(password))
+
+        return super.input(context, record, update)
 
       case methods.update:
         if (update.replace) {
           const { replace: { email, password } } = update
           update.replace = { email }
 
-          if (password) Object.assign(update.replace, makePassword(password))
+          if (password) Object.assign(update.replace, _makePassword(password))
         }
-        return recordBase.update(update)
-    }
-  },
 
-  output(context, record) {
+        return super.input(context, record, update)
+    }
+  }
+
+  static output(context, record) {
     delete record.password
     delete record.salt
   }
 }
-
-function makePassword(string) {
-  const salt = crypto.randomBytes(32)
-  const password = crypto.createHash(hashAlgorithm)
-                         .update(salt).update('' + string).digest()
-
-  return { salt, password }
-}
-
-export default recordType

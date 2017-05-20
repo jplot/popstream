@@ -1,17 +1,18 @@
-import fortune from 'fortune'
-import recordBase from './base'
+import RecordBase from './base'
 
-const recordType = {
-  name: 'stream',
+export default class extends RecordBase {
+  static get NAME() {
+    return 'stream'
+  }
 
-  definition: {
-    channel: ['channel', 'streams'],
-    provider: ['provider', 'streams'],
-    data: Buffer,
-    enabled: Boolean,
-    updatedAt: Date,
-    createdAt: Date
+  static get DEFINITION() {
+    return {
+      channel: ['channel', 'streams'],
+      provider: ['provider', 'streams'],
+      data: Buffer,
+      enabled: Boolean,
+      updatedAt: Date,
+      createdAt: Date
+    }
   }
 }
-
-export default Object.assign(recordType, recordBase)
