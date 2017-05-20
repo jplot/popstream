@@ -12,7 +12,11 @@ const logger = debug('HTTP')
 export default {
   start() {
     const recordActions = { 'POST': 'CREATE', 'PATCH': 'UPDATE' }
-    const listener = fortuneHTTP(store)
+    const listener = fortuneHTTP(store, {
+      serializers: [
+        fortuneHTTP.JsonSerializer
+      ]
+    })
 
     const server = http.createServer((request, response) => {
       listener(request, response).then(chuck => {
