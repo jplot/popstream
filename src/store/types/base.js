@@ -1,15 +1,15 @@
 import fortune from 'fortune'
-import _ from 'underscore'
+import omit from 'lodash.omit'
 
 const { methods } = fortune
 
 function createRecord(record) {
-  record = Object.assign(_.omit(record, 'id'), { updatedAt: new Date(), createdAt: new Date() })
+  record = Object.assign(omit(record, 'id'), { updatedAt: new Date(), createdAt: new Date() })
   return record
 }
 
 function updateRecord(record) {
-  if (record.replace) record.replace = Object.assign(_.omit(record.replace, ['id', 'createdAt']), { updatedAt: new Date() })
+  if (record.replace) record.replace = Object.assign(omit(record.replace, ['id', 'createdAt']), { updatedAt: new Date() })
   return record
 }
 
