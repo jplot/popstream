@@ -15,8 +15,8 @@ const recordTypes = {}
 const transforms = {}
 
 for (let type of [User, Channel, Provider, Stream]) {
-  recordTypes[type.name] = type.definition
-  transforms[type.name] = [type.input, type.output]
+  recordTypes[type.NAME] = type.DEFINITION
+  transforms[type.NAME] = [type.input, type.output]
 }
 
 let adapter = null
