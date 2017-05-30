@@ -44,6 +44,11 @@ export default {
       sockets.push(socket)
     })
 
+    server.on('error', (e) => {
+      logger.error(`Error: ${e.syscall} ${e.errno} ${e.address}:${e.port}`)
+      process.exit()
+    })
+
     logger.info(`started on port ${CONFIG.get('ws.port')}`)
   },
 

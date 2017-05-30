@@ -18,6 +18,15 @@ export default ((...PREFIX) => ({
     console.log(...this._formatPrefix(), ...messages)
   },
 
+  error(...messages) {
+    if (messages.length !== 0) {
+      messages[0] = `\x1b[31m${messages[0]}`
+      messages[messages.length - 1] = `${messages[messages.length - 1]}\x1b[0m`
+    }
+
+    console.error(...this._formatPrefix(), ...messages)
+  },
+
   socket(socket, ...messages) {
     this.info(`[${socket.remoteAddress}:${socket.remotePort}]`, ...messages)
   }

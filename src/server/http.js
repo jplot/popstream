@@ -63,7 +63,15 @@ export default {
       })
     })
 
-    store.connect().then(() => server.listen(CONFIG.get('http.port')))
+    store.connect().then(() => {
+      server.on('error', (e) => {
+        logger.error(`Error: ${e.syscall} ${e.errno} ${e.address}:${e.port}`)
+        process.exit()
+      })
+
+      server.listen(CONFIG.get('http.port'))
+    })
+
     // store.endTransaction.catch(error => { console.error(error) })
 
     logger.info(`started on port ${CONFIG.get('http.port')}`)
