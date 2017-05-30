@@ -23,9 +23,9 @@ export default {
     return ((changes) => {
       const { action, records } = ws._recordsFormat(changes)
 
-      records.forEach((record) => {
+      for (const record of records) {
         logger.info(`published ${action} ${record}`)
-      })
+      }
 
       const data = msgpack.encode({
         worker: {

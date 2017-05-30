@@ -37,9 +37,9 @@ export default {
 
         const { action, records } = ws._recordsFormat(changes)
 
-        records.forEach((record) => {
+        for (const record of records) {
           logger.info(`received ${action} ${record}`)
-        })
+        }
 
         callback(changes)
       })

@@ -22,11 +22,11 @@ export default {
       // Inspired from https://github.com/fortunejs/fortune-ws/blob/482ac4398aa9ded945a202b4c2dd0b1897d12874/lib/index.js#L184
       client.pull((changes) => {
         if (sockets.length) {
-          sockets.forEach((socket) => {
+          for (const socket of sockets) {
             const state = server.stateMap.get(socket)
 
             socket.send(msgpack.encode({ changes: this.change(state, changes) }), { binary: true })
-          })
+          }
         }
       })
 
@@ -55,9 +55,9 @@ export default {
   change(state, changes) {
     const { action, records } = this._recordsFormat(changes)
 
-    records.forEach((record) => {
+    for (const record of records) {
       logger.info(`broadcasted ${action} ${record}`)
-    })
+    }
 
     if (changes) return changes
     return state
