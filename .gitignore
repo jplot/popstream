@@ -36,10 +36,11 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 
-# Ignore database
-db/*
-!db/.keep
-
 # Ignore bundler compiled
 dist/*
 !dist/.keep
+
+# Ignore database
+!dist/db
+dist/db/*
+!dist/db/.keep
