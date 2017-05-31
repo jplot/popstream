@@ -1,9 +1,11 @@
 import CONFIG from 'config'
+import cluster from 'cluster'
 
 export default ((...PREFIX) => ({
-  _formatPrefix() {
+  _formatPrefix(p = null) {
+    p = p || process
     let name = 'Serve'
-    if (Number(CONFIG.get('use.cluster')) === 1) name = `Worker:${process.pid}`
+    if (Number(CONFIG.get('use.cluster')) === 1) name = `${p === null && cluster.isMaster ? 'Master' : 'Worker'}:${p.pid}`
 
     let prefixFormated = PREFIX.map((name) => { return `[${name}]` })
     if (prefixFormated.length !== 0) {
@@ -12,6 +14,10 @@ export default ((...PREFIX) => ({
     }
 
     return [`\x1b[35m[${name}]\x1b[0m`, ...prefixFormated]
+  },
+
+  worker(p, ...messages) {
+    console.log(...this._formatPrefix(p), ...messages)
   },
 
   info(...messages) {
