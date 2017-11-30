@@ -19,16 +19,16 @@ export default {
     })
 
     const server = http.createServer((request, response) => {
-      listener(request, response).then(chuck => {
-        const socket = request.client
-        const contentEncoding = response.headers['content-encoding'];
-        const contentType = response.headers['content-type'].split(';')[0];
+      const socket = request.client
+      const recordAction = recordActions[request.method] || request.method
+      let recordPath = request.url.replace(/\/+$/, '') || '/'
 
-        const recordAction = recordActions[request.method] || request.method
-        let recordPath = request.url.replace(/\/+$/, '')
+      listener(request, response).then(chuck => {
+        const contentEncoding = response.headers['content-encoding'];
+        const contentType = (response.headers['content-type'] || '').split(';')[0];
 
         new Promise((resolve, reject) => {
-          if (contentType.includes('application/json') && recordActions.hasOwnProperty(request.method)) {
+          if (contentType.includes('application/json') && recordActions.hasOwnProperty(request.method) && recordPath !== '/') {
             recordPath = `/${recordPath.split('/').slice(-1)[0]}`
 
             if (contentEncoding === 'gzip') {
@@ -54,12 +54,16 @@ export default {
           if (payload) records = JSON.parse(payload).records.map(record => { return `${recordPath}/${record.id}` })
 
           for (const record of records) {
-            logger.socket(socket, `requested ${recordAction} ${record}`)
+            logger.socket(socket, `requested ${recordAction} ${record} => OK`)
           }
         })
       })
       .catch(error => {
-        console.error(error.stack)
+        logger.socket(socket, `requested ${recordAction} ${recordPath} => ${error.name}`)
+
+        if (!['NotFoundError', 'BadRequestError'].includes(error.name)) {
+          console.error(error.stack)
+        }
       })
     })
 

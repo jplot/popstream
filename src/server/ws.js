@@ -19,7 +19,7 @@ export default {
     if (Number(CONFIG.get('use.cluster')) === 1) {
       const client = redis.start('popstream:workers:ws')
 
-      // Inspired from https://github.com/fortunejs/fortune-ws/blob/482ac4398aa9ded945a202b4c2dd0b1897d12874/lib/index.js#L184
+      // Based on https://github.com/fortunejs/fortune-ws/blob/482ac4398aa9ded945a202b4c2dd0b1897d12874/lib/index.js#L184
       client.pull((changes) => {
         if (sockets.length) {
           for (const socket of sockets) {
